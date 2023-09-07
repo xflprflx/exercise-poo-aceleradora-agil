@@ -1,39 +1,33 @@
 import inicialMaiuscula from "./utils.js";
 
 class Move {
+
+  #name;
+  #lv;
+  
   constructor(name, lv) {
-    this.name = name;
-    this.lv = lv;
+    this.#name = name;
+    this.#lv = lv;
   }
 
-  get(key) {
-    return this[key];
-  }
+  getName() { return this.#name }
+  getLv() { return this.#lv }
 
-  set(key, value) {
-    this[key] = value;
-  }
-
-  add(key, value) {
-    this[key].push(value);
-  }
-
-  addChild(child) {
-    this.children.push(child);
-  }
+  setName(name) { this.#name = name }
+  setLv(lv) { this.#lv = lv }
 
   /*toString(){
     return `Lv ${this.lv} - ${this.name}`
   }*/
 
   static toString(moves){
-    return `    ${moves.map(x => `Lv ${x.lv} - ${inicialMaiuscula(x.name)}`).join('\n\t')}`
+    return `    ${moves.map(x => `Lv ${x.#lv} - ${inicialMaiuscula(x.#name)}`).join('\n\t')}`
   }
 
   static bubbleSort(moves){
     for(let i = 0; i < moves.length; i++){
       for(let m = 0; m < (moves.length - i - 1); m++){
-        if(moves[m].lv > moves[m+1].lv){
+        if(moves[m].#lv > moves[m+1].#lv){
           let elementoTemp = moves[m]
           moves[m] = moves[m+1]
           moves[m+1] = elementoTemp
